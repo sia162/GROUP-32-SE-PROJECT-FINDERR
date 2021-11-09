@@ -1,4 +1,5 @@
 import React from "react";
+import Contact from "./contact/Contact";
 import Navbar from "./navbar/Navbar";
 import Sectionone from "./sectionone/Sectionone";
 
@@ -7,6 +8,7 @@ const Home = () => {
     <div>
       <Navbar />
       <Sectionone />
+      <Contact />
     </div>
   );
 };
