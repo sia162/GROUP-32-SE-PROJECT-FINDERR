@@ -9,10 +9,12 @@ function App() {
     <div>
       <Router>
         <Navbar />
+
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+        
       </Router>
     </div>
   );
