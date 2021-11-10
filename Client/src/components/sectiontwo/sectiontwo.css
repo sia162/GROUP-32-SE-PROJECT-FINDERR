@@ -2,7 +2,7 @@
   background: url(https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8d3JpdGluZyUyMGluJTIwYmxhY2slMjBhbmQlMjB3aGl0ZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 95vh;
+  height: 99vh;
   filter: blur(2px);
 }
 
@@ -17,10 +17,10 @@
 }
 
 .card {
-  width: 18rem;
-  height: 24em;
-  box-shadow: black 0px 14px 28px, black 7px 10px;
-  border: none;
+  width: 20rem;
+  height: 27rem;
+  box-shadow: white 10px 14px;
+  border: solid white 1px;
   background-color: rgba(215, 221, 216, 255);
 }
 

@@ -1,33 +1,33 @@
+.flexx {
+  display: flex;
+}
+.one img {
+  height: 1000px;
+  width: 55vw;
+  overflow: hidden;
+  margin-top: -350px;
+}
 .two {
-  color: rgba(221, 221, 221, 255);
   font-family: "Raleway", sans-serif;
-  letter-spacing: 1.5px;
   text-align: center;
-  padding: 3rem 3rem 1.5rem 3rem;
-  background-image: url(https://c4.wallpaperflare.com/wallpaper/644/305/118/pattern-black-gradient-texture-wallpaper-preview.jpg);
+  padding: 3.5rem 1rem;
+  /* background-image: url(https://c4.wallpaperflare.com/wallpaper/644/305/118/pattern-black-gradient-texture-wallpaper-preview.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: black 0px 14px 28px, black 0px 10px 10px;
-  max-width: 50%;
-  margin: 2rem auto;
+  background-size: cover; */
+  /* box-shadow: black 0px 14px 28px, black 0px 10px 10px; */
+  max-width: 45%;
 }
 .two input,
 .two textarea {
   border: none;
   background: none;
-  border-bottom: solid 1px rgba(221, 221, 221, 255);
-  padding: 0.5em 0;
+  border-bottom: solid 1px gray;
+  padding: 0.5em;
   width: 70%;
-  margin: 1rem;
+  margin: 1.25rem;
   color: inherit;
-  letter-spacing: inherit;
 }
 .two button {
   margin: 1em;
-  color: inherit;
-  background: rgba(29, 30, 35, 255);
-  padding: 1em 1.5em;
-  letter-spacing: inherit;
-  border: none;
-  box-shadow: black 0px 14px 28px, black 0px 10px 10px;
+  letter-spacing: 1.5px;
 }
