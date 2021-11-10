@@ -4,31 +4,31 @@ import loginimg from "./login-image.jpg";
 
 const Login = () => {
   return (
-    <div className="login"
-    >
+    <div className="login">
       <div className="input-img">
         <img src={loginimg} alt="" />
       </div>
 
       <div className="form-right-side">
-
-        <div className="form-title">Login Here</div>
+        <div className="form-title">Login To Continue</div>
         <form className="form-group">
           <div className="input-box">
-            <label htmlFor="name">Enter your name </label>{" "}
-            <input type="text" name="name" />
+            <label htmlFor="username">username </label>{" "}
+            <input type="text" name="username" />
           </div>
           <div className="input-box">
-            <label htmlFor="email">Enter your email </label>{" "}
+            <label htmlFor="email">email </label>{" "}
             <input type="email" name="email" />
           </div>
           <div className="input-box">
-            <label htmlFor="password">Enter your password </label>{" "}
+            <label htmlFor="password">password </label>{" "}
             <input type="password" name="password" />
           </div>
         </form>
-        
-        <button>Login</button>
+
+        <button className="login-btn">Login</button>
+
+        <div className="orsignuplink">or sign up here.</div>
       </div>
     </div>
   );
