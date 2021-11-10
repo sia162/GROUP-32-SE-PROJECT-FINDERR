@@ -1,0 +1,37 @@
+.image2 {
+  background: url(https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8d3JpdGluZyUyMGluJTIwYmxhY2slMjBhbmQlMjB3aGl0ZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 95vh;
+  filter: blur(2px);
+}
+
+.posteg {
+  position: absolute;
+  top: 153%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  column-gap: 5rem;
+}
+
+.card {
+  width: 18rem;
+  height: 24em;
+  box-shadow: black 0px 14px 28px, black 7px 10px;
+  border: none;
+  background-color: rgba(215, 221, 216, 255);
+}
+
+.card img {
+  max-height: 15rem;
+}
+
+.section2 {
+  top: 113%;
+  padding: 0.5em;
+  width: 25vw;
+  background-color: transparent;
+  color: black;
+}
