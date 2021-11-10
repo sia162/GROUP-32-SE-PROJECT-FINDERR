@@ -1,21 +1,22 @@
-.login {
+.register {
   display: flex;
   justify-content: flex-start;
+  flex-direction: row-reverse;
   align-items: center;
   height: 92.9vh;
 }
 
-.login-input-img {
+.register-input-img {
   flex: 1;
 }
 
-.login-input-img img {
+.register-input-img img {
   height: 93vh;
   width: 64vw;
   object-fit: cover;
 }
 
-.login-form-right-side {
+.register-form-right-side {
   flex: 1 1;
   display: flex;
   flex-direction: column;
@@ -26,7 +27,7 @@
   margin: 113px 80px auto 80px;
 }
 
-.login-form-group {
+.register-form-group {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -35,35 +36,35 @@
   justify-content: center;
 }
 
-.login-input-box {
+.register-input-box {
   display: flex;
   flex-direction: column;
 }
 
-.login-form-title {
+.register-form-title {
   font-size: 2rem;
   text-align: center;
 }
 
-.login-input-box input {
+.register-input-box input {
   padding: 7px 26px;
   border: 2px solid #e4e4e4;
   border-radius: 20px;
   outline: none;
 }
 
-.login-input-box label {
+.register-input-box label {
   padding: 5px;
   color: #646464;
 }
 
-.login-btn {
+.register-btn {
   padding: 6px 0px;
   background: black;
   color: white;
   border-radius: 9px;
 }
 
-.orsignuplink {
+.orloginlink {
   text-align: center;
 }
