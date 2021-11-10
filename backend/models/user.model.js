@@ -21,6 +21,10 @@ const userSchema = new Schema({
   hash_password:{
     type:String,
     required:true
+  },
+  tech_skills:{
+    type:String,
+    required:false
   }
 
 },{
