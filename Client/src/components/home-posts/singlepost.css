@@ -1,0 +1,29 @@
+.card-post-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-post-time-date {
+  display: flex;
+  column-gap: 10px;
+  justify-content: flex-start;
+  font-size: 12px;
+}
+
+.card-post-tech ul {
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  column-gap: 6px;
+  font-size: 12px;
+}
+
+.card-body {
+  padding: 7px 1rem;
+}
+
+.card-text {
+  padding: 7px 1rem;
+}

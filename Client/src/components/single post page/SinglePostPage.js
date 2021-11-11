@@ -1,11 +1,12 @@
 import React from "react";
-import "./singlepost.css";
+import "./singlepostpage.css";
 import { Link } from "react-router-dom";
 
 const SinglePost = () => {
   return (
     <div>
       <div className="top-post-bg">
+        
         <div className="post-details">
           <div className="author-details">
             <div className="author-pic">
@@ -22,6 +23,13 @@ const SinglePost = () => {
           <div className="post-time-date">
             <div className="post-date">23 Nov 2021</div>
             <div className="post-time">11:05:55</div>
+          </div>
+
+          <div className="post-tech">
+            <ul>
+              <li>Nodejs</li>
+              <li>React</li>
+            </ul>
           </div>
         </div>
       </div>

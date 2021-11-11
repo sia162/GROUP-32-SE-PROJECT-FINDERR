@@ -8,7 +8,7 @@
 //         <img src="https://images.unsplash.com/photo-1594022527131-2c26853089f1?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGNhbGxpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"></img>
 //       </div>
 //       <div className="two">
-//         <h1 class="fw-bold mb-5">CONTACT FORM</h1>
+//         <h1 className="fw-bold mb-5">CONTACT FORM</h1>
 //         <form>
 //           <input type="text" placeholder="Your name" />
 //           <input type="text" placeholder="Your phone" maxLength="10" />
@@ -29,7 +29,7 @@ const Contact = () => {
   return (
     <div className="flexx">
       <div className="two">
-        <h1 class="fw-bold mb-4">CONTACT FORM</h1>
+        <h1 className="fw-bold mb-4">CONTACT FORM</h1>
         <form>
           <input type="text" placeholder="Your name" />
           <input type="text" placeholder="Your phone" maxLength="10" />
@@ -40,7 +40,7 @@ const Contact = () => {
       </div>
       <img
         src="https://image.freepik.com/free-photo/top-view-chat-bubbles-with-telephone-receiver-copy-space_23-2148796078.jpg"
-        class="rounded float-end"
+        className="rounded float-end"
         alt="..."
         style={{
           height: "65vh",

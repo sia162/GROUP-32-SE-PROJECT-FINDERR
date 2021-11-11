@@ -5,8 +5,8 @@ const Sectionone = () => {
   return (
     <>
       <div className="image1"></div>
-      <div class="bg-text">
-        <h1 class="fst-italic">Finderr</h1>
+      <div className="bg-text">
+        <h1 className="fst-italic">Finderr</h1>
         <p>Project Team Finding Website</p>
       </div>
     </>

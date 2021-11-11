@@ -5,7 +5,7 @@ import Login from "./components/login/Login";
 import Navbar from "./components/navbar/Navbar";
 import Register from "./components/register/Register";
 import Footer from "./components/footer/Footer";
-import SinglePost from "./components/single post/SinglePost";
+import SinglePost from "./components/single post page/SinglePostPage";
 
 function App() {
   return (
