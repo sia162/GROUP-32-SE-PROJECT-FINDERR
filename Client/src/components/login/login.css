@@ -64,6 +64,10 @@
   border-radius: 9px;
 }
 
+.login-btn:hover {
+  color: grey;
+}
+
 .orsignuplink {
   text-align: center;
 }

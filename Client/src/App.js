@@ -5,6 +5,7 @@ import Login from "./components/login/Login";
 import Navbar from "./components/navbar/Navbar";
 import Register from "./components/register/Register";
 import Footer from "./components/footer/Footer";
+import SinglePost from "./components/single post/SinglePost";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/post/:id" element={<SinglePost />} />
         </Routes>
         <Footer />
       </Router>

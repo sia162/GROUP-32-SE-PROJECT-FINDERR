@@ -1,0 +1,60 @@
+.top-post-bg {
+  background: url("https://source.unsplash.com/1600x900/?programming,coding");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 500px;
+}
+
+.post-details {
+  position: relative;
+  top: 377px;
+  color: white;
+  background: #000000a6;
+  text-align: center;
+  padding: 20px 1px;
+}
+
+.author-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 12px;
+  font-size: 22px;
+  color: #c5c3c3;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 17px 0px;
+}
+
+.post-time-date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 12px;
+  padding: 3px 0px 4px 16px;
+}
+
+.post-title {
+  font-size: 3rem;
+  text-align: center;
+  padding: 13px 1px;
+  color: #5f5f5f;
+}
+
+.post-desc {
+  text-align: center;
+  margin: 12px 15rem 38px 15rem;
+}
+
+.single-post-btn {
+  padding: 5px 15px;
+  background: black;
+  color: white;
+  border-radius: 9px;
+}

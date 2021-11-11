@@ -1,5 +1,6 @@
 import React from "react";
 import "./sectiontwo.css";
+import { Link } from "react-router-dom";
 
 const Sectiontwo = () => {
   return (
@@ -23,9 +24,9 @@ const Sectiontwo = () => {
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
-            <a href="#" className="btn btn-dark">
+            <Link to="/post/:id" className="btn btn-dark">
               Go somewhere
-            </a>
+            </Link>
           </div>
         </div>
         <div className="card">
@@ -40,9 +41,9 @@ const Sectiontwo = () => {
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
-            <a href="#" className="btn btn-dark">
+            <Link to="/post/:id" className="btn btn-dark">
               Go somewhere
-            </a>
+            </Link>
           </div>
         </div>
         <div className="card">
@@ -57,9 +58,9 @@ const Sectiontwo = () => {
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
-            <a href="#" className="btn btn-dark">
+            <Link to="/post/:id" className="btn btn-dark">
               Go somewhere
-            </a>
+            </Link>
           </div>
         </div>
       </div>
