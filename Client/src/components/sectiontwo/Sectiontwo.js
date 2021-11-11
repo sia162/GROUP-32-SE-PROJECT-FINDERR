@@ -3,8 +3,7 @@ import "./sectiontwo.css";
 
 const Sectiontwo = () => {
   return (
-    <>
-      <div className="image2"></div>
+    <div className="blank">
       <div class="bg-text section2">
         <h1 class="fst-italic">
           <u> Posts </u>
@@ -64,7 +63,7 @@ const Sectiontwo = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

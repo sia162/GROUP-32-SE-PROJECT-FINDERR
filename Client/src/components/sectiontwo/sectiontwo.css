@@ -1,14 +1,10 @@
-.image2 {
-  background: url(https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8d3JpdGluZyUyMGluJTIwYmxhY2slMjBhbmQlMjB3aGl0ZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);
-  background-size: cover;
-  background-repeat: no-repeat;
+.blank {
   height: 99vh;
-  filter: blur(2px);
+  background: #fbfbfb;
 }
-
 .posteg {
   position: absolute;
-  top: 153%;
+  top: 160%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -19,9 +15,8 @@
 .card {
   width: 20rem;
   height: 27rem;
-  box-shadow: white 10px 14px;
-  border: solid white 1px;
-  background-color: rgba(215, 221, 216, 255);
+  /* box-shadow: black 10px 14px; */
+  border: solid black 1px;
 }
 
 .card img {
@@ -29,7 +24,7 @@
 }
 
 .section2 {
-  top: 113%;
+  top: 120%;
   padding: 0.5em;
   width: 25vw;
   background-color: transparent;

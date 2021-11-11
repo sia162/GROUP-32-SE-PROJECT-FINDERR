@@ -1,21 +1,18 @@
 .flexx {
   display: flex;
+  height: 90vh;
+  align-items: center;
+  /* background: #fbfbfb; */
 }
-.one img {
-  height: 1000px;
-  width: 55vw;
-  overflow: hidden;
-  margin-top: -350px;
-}
+/* .one img {
+  height: 700px;
+  width: 50vw;
+  object-fit: cover;
+  object-position: 0 -200px;
+} */
 .two {
-  font-family: "Raleway", sans-serif;
-  text-align: center;
-  padding: 3.5rem 1rem;
-  /* background-image: url(https://c4.wallpaperflare.com/wallpaper/644/305/118/pattern-black-gradient-texture-wallpaper-preview.jpg);
-  background-repeat: no-repeat;
-  background-size: cover; */
-  /* box-shadow: black 0px 14px 28px, black 0px 10px 10px; */
-  max-width: 45%;
+  padding: 4rem;
+  max-width: 60%;
 }
 .two input,
 .two textarea {
@@ -23,11 +20,16 @@
   background: none;
   border-bottom: solid 1px gray;
   padding: 0.5em;
-  width: 70%;
-  margin: 1.25rem;
-  color: inherit;
+  width: 100%;
+  margin-top: 1.25rem;
 }
 .two button {
-  margin: 1em;
+  margin: 2rem 0;
   letter-spacing: 1.5px;
+}
+.sidebox {
+  width: 20vw;
+  background-color: rgba(217, 222, 228, 255);
+  height: 90vh;
+  right: 0%;
 }
