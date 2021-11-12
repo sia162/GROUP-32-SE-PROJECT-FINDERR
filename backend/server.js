@@ -21,9 +21,11 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
 
 //APIS ROUTES
 const usersRouter = require('./routes/users');
+const postsRouter = require('./routes/posts');
+
 
 app.use('/users',usersRouter);
-
+app.use('/posts',postsRouter);
 
 //LISTEN SERVER
 app.listen(port,()=>{
