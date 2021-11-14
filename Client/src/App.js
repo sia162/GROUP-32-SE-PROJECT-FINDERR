@@ -6,6 +6,7 @@ import Navbar from "./components/navbar/Navbar";
 import Register from "./components/register/Register";
 import Footer from "./components/footer/Footer";
 import SinglePost from "./components/single post page/SinglePostPage";
+import Post from "./components/post/Post";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/post/:id" element={<SinglePost />} />
+          <Route path="/posts" element={<Post />} />
         </Routes>
         <Footer />
       </Router>

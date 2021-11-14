@@ -5,7 +5,7 @@ import Sectiontwo from "./sectiontwo/Sectiontwo";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <Sectionone />
       <Sectiontwo />
       <Contact />

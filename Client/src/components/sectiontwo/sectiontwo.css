@@ -1,22 +1,29 @@
 .blank {
   height: 99vh;
-  background: #fbfbfb;
+  background: rgba(217, 222, 228, 255);
 }
 .posteg {
   position: absolute;
-  top: 160%;
+  top: 163%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
   display: flex;
-  column-gap: 5rem;
+  column-gap: 1.75rem;
+}
+
+.halfbg {
+  position: absolute;
+  top: 160%;
+  z-index: 1;
+  height: 50vh;
+  width: 100%;
 }
 
 .card {
-  width: 20rem;
-  height: 27rem;
-  /* box-shadow: black 10px 14px; */
-  border: solid black 1px;
+  width: 21rem;
+  height: 28rem;
+  border: solid white 1rem;
 }
 
 .card img {
@@ -25,7 +32,7 @@
 
 .section2 {
   top: 120%;
-  padding: 0.5em;
+  padding: 1em;
   width: 25vw;
   background-color: transparent;
   color: black;

@@ -6,7 +6,6 @@ const SinglePost = () => {
   return (
     <div>
       <div className="top-post-bg">
-        
         <div className="post-details">
           <div className="author-details">
             <div className="author-pic">
