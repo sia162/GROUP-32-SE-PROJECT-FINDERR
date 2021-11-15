@@ -1,0 +1,17 @@
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-setting {
+  color: white;
+  padding-left: 12px;
+  font-size: 23px;
+}
+
+.profile-head {
+  font: 10px;
+  padding-left: 10px;
+  color: azure;
+}

@@ -1,0 +1,68 @@
+.profile-div {
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(217, 222, 228, 255);
+  padding: 2rem;
+  grid-gap: 2rem;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.profile-img {
+  height: 236px;
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80vh;
+  text-align: center;
+}
+
+.tech-skills ul li {
+  list-style: none;
+}
+
+.userdetails {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 2px;
+}
+
+.tech-skills ul {
+  margin: 0;
+  padding: 0;
+}
+
+.all-posts-of-user {
+  display: flex;
+  flex-direction: column;
+  border-top: 3px solid black;
+  padding-top: 26px;
+  margin-top: 14px;
+}
+
+.posts-box {
+  display: flex;
+  column-gap: 20px;
+  margin-top: 16px;
+}
+
+.user-name {
+  font-size: 2rem;
+}
+
+.request-btn {
+  padding: 1px 26px;
+  background: black;
+  color: white;
+  height: 39px;
+  border-radius: 9px;
+}
+
+.tech-skills {
+  text-align: left;
+  width: 220px;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./navbar.css";
 
 const Navbar = () => {
   return (
@@ -45,10 +46,16 @@ const Navbar = () => {
                 placeholder="Search"
                 aria-label="Search"
               />
+
               <button className="btn btn-dark btn-outline-light" type="submit">
                 Search
               </button>
             </form>
+
+            <Link to="/profile" className="link profile">
+              <i className="fas fa-user-circle profile-setting"></i>
+              <span className="profile-head">Profile</span>
+            </Link>
           </div>
         </div>
       </nav>
