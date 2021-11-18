@@ -54,15 +54,101 @@
   font-size: 2rem;
 }
 
-.request-btn {
-  padding: 1px 26px;
-  background: black;
-  color: white;
-  height: 39px;
-  border-radius: 9px;
-}
-
 .tech-skills {
   text-align: left;
   width: 220px;
+}
+
+.add-post-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+}
+
+.post-details-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: initial;
+  width: 69vw;
+  margin: 10px 0px;
+  border-top: solid 3px black;
+  padding-top: 23px;
+}
+
+.post-details-form input {
+  padding: 7px;
+  background: #d9dee4;
+  border: none;
+}
+
+.post-details-form textarea {
+  border: none;
+  padding: 7px;
+  background: #d5d8dcbf;
+}
+
+.cat-form {
+  display: flex;
+  margin-bottom: 7px;
+  position: relative;
+  right: 86%;
+}
+
+/* checkbox css */
+input[type="checkbox"] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label:before {
+  content: "\2714";
+  border: 0.1em solid #000;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.2em;
+  padding-bottom: 0.3em;
+  margin-right: 0.2em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: 0.2s;
+}
+
+input[type="checkbox"] + label:active:before {
+  transform: scale(0);
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-color: black;
+  border-color: #6d6d6d;
+  color: #fff;
+}
+
+input[type="checkbox"]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
+}
+
+input[type="checkbox"]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: rgb(174, 174, 174);
+  border-color: rgb(174, 174, 174);
+}
+
+.add-post-btn {
+  width: 105px;
+}
+
+.request-btn {
+  width: 105px;
+  height: 38px;
 }

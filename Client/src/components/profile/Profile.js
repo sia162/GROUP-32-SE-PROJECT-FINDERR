@@ -22,7 +22,34 @@ const Profile = () => {
       <div className="profile-rightside">
         <div className="userdetails">
           <div className="user-name">John Morph</div>
-          <button className="request-btn">Request</button>
+          <button className="btn btn-dark request-btn ">Request</button>
+        </div>
+
+        <div className="add-post-section">
+          <form className="post-details-form">
+            <input
+              type="text"
+              name="post-title"
+              placeholder="Enter post title."
+            />
+
+            <textarea
+              name="post-desc"
+              id="post-desc"
+              cols="30"
+              rows="10"
+              placeholder="Enter what's in your mind."
+            ></textarea>
+          </form>
+
+          <form className="cat-form">
+            <input type="checkbox" id="cat1" name="cat-1" value="React" />
+            <label htmlFor="cat1">React</label>
+            <input type="checkbox" id="cat2" name="cat-2" value="Nodejs" />
+            <label htmlFor="cat2">Nodejs</label>
+          </form>
+
+          <button className="add-post-btn btn btn-dark">Post</button>
         </div>
 
         <div className="all-posts-of-user">
