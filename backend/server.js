@@ -1,33 +1,29 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-
-//ENVIRONMENT VARIABLE
-require('dotenv').config();
-
-//SERVER
+const express = require("express");
+const env = require("dotenv");
 const app = express();
-const port = process.env.PORT || 5000;
+const mongoose = require("mongoose");
+const path = require("path");
+const cors = require("cors");
 
-//MIDDLEWARES
-app.use(cors());
-app.use(express.json());
+//routes
+const authRoutes = require("./routes/auth");
 
-//DATABASE CONNECTION
+
+
+//environment variable or you can say constants
+env.config();
+
+// mongodb connection
+//mongodb+srv://root:<password>@cluster0.8pl1w.mongodb.net/<dbname>?retryWrites=true&w=majority
 mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.kew9p.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,
 ).then(()=>{
   console.log('database conneted');
 })
 
-//APIS ROUTES
-const usersRouter = require('./routes/users');
-const postsRouter = require('./routes/posts');
+app.use(cors());
+app.use(express.json());
+app.use("/api", authRoutes);
 
-
-app.use('/users',usersRouter);
-app.use('/posts',postsRouter);
-
-//LISTEN SERVER
-app.listen(port,()=>{
-  console.log(`Server started at port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
