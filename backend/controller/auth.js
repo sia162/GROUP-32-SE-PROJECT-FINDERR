@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const shortid = require("shortid");
 
-const generateJwtToken = (_id ) => {
+const generateJwtToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
@@ -15,8 +15,8 @@ exports.signup = (req, res) => {
       return res.status(400).json({
         error: "User already registered",
       });
-
-    const { firstName, lastName, email, password, tech_skills} = req.body;
+      
+    const { firstName, lastName, email, password, tech_skills } = req.body;
     const hash_password = await bcrypt.hash(password, 10);
     const _user = new User({
       firstName,
@@ -49,6 +49,7 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (error) return res.status(400).json({ error });
+
     if (user) {
       const isPassword = await user.authenticate(req.body.password);
       if (isPassword) {

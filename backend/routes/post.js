@@ -1,10 +1,15 @@
 const express = require('express');
-const { createpost } = require('../controller/post');
+const { createpost , allPost ,myPost ,deletePost , updatePost} = require('../controller/post');
 const { requireLogin } = require('../validators/requireLogin');
 const router = express.Router();
 
 
 router.post('/createpost',requireLogin,createpost);
+router.get('/allPost',requireLogin,allPost);
+router.get('/myPost',requireLogin,myPost);
+router.delete('/deletePost/:postId',requireLogin,deletePost);
+router.post('/updatePost/:postId',requireLogin,updatePost);
+
 
 
 

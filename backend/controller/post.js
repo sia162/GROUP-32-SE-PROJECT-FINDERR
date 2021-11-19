@@ -6,7 +6,7 @@ exports.createpost = (req, res) => {
     if(!title || !body || !tech_skills){
       return  res.status(422).json({error:"Plase add all the fields"})
     }
-    req.user.password = undefined
+    req.user.hash_password = undefined
 
     const post = new Post({
         title,
@@ -23,3 +23,63 @@ exports.createpost = (req, res) => {
     })
     
 };
+
+exports.allPost = (req, res) => {
+  Post.find()
+    .populate("postedBy","_id name")
+    .sort('-createdAt')
+    .then((posts)=>{
+        res.json({posts})
+    }).catch(err=>{
+        console.log(err)
+    })
+   
+};
+
+exports.myPost = (req, res) => {
+  Post.find({postedBy:req.user._id})
+    .populate("PostedBy","_id name")
+    .then(mypost=>{
+        res.json({mypost})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+};
+
+
+exports.deletePost = (req, res) => {
+  Post.findOne({_id:req.params.postId})
+  .populate("postedBy","_id")
+  .exec((err,post)=>{
+      if(err || !post){
+          return res.status(422).json({error:err})
+      }
+      if(post.postedBy._id.toString() === req.user._id.toString()){
+            post.remove()
+            .then(result=>{
+                res.json(result)
+            }).catch(err=>{
+                console.log(err)
+            })
+      }
+  })
+};
+
+
+
+exports.updatePost = (req, res) => {
+  Post.findById(req.params.id)
+  .then(post =>{
+    post.title=req.body.title;
+    post.body = req.body.body;
+    post.tech_skills = req.body.tech_skills;
+
+    post.save()
+    .then(()=>res.json('Post updated!!'))
+    .catch(err=>res.status(400).json('Error: '+err));
+  })
+  .catch(err=>res.status(400).json('Error: '+err));
+};
+
+
