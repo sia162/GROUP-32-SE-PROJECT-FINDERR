@@ -2,9 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   background: rgba(217, 222, 228, 255);
-  padding: 2rem;
-  grid-gap: 2rem;
-  gap: 2rem;
+  padding: 2rem 0rem;
   justify-content: center;
 }
 
@@ -63,7 +61,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .post-details-form {
