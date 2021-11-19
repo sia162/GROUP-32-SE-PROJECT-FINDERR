@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     tech_skills:{
-      type:String
+      type:[String]
     },
     contactNumber: { type: String },
     pofilePicture: { type: String },
