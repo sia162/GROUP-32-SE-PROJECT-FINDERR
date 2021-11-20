@@ -38,10 +38,26 @@ exports.signup = (req, res) => {
 
       if (user) {
         const token = generateJwtToken(user._id);
-        const { _id, firstName, lastName, email, fullName } = user;
+        const {
+          _id,
+          firstName,
+          lastName,
+          email,
+          fullName,
+          tech_skills,
+          contactNumber,
+        } = user;
         return res.status(201).json({
           token,
-          user: { _id, firstName, lastName, email, fullName },
+          user: {
+            _id,
+            firstName,
+            lastName,
+            email,
+            fullName,
+            tech_skills,
+            contactNumber,
+          },
         });
       }
     });
@@ -61,10 +77,26 @@ exports.signin = (req, res) => {
         //   { expiresIn: "1d" }
         // );
         const token = generateJwtToken(user._id);
-        const { _id, firstName, lastName, email, fullName } = user;
+        const {
+          _id,
+          firstName,
+          lastName,
+          email,
+          fullName,
+          tech_skills,
+          contactNumber,
+        } = user;
         res.status(200).json({
           token,
-          user: { _id, firstName, lastName, email, fullName },
+          user: {
+            _id,
+            firstName,
+            lastName,
+            email,
+            fullName,
+            tech_skills,
+            contactNumber,
+          },
         });
       } else {
         return res.status(400).json({

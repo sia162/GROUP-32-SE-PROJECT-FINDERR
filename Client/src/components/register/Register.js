@@ -12,6 +12,8 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    tech_skills: [],
+    contactNumber: "",
   });
 
   const [error, setError] = useState(false);
@@ -25,7 +27,15 @@ const Register = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const { firstName, lastName, username, email, password } = usercreds;
+    const {
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+      tech_skills,
+      contactNumber,
+    } = usercreds;
 
     const response = await fetch("http://localhost:2000/api/signup", {
       method: "POST",
@@ -38,6 +48,8 @@ const Register = () => {
         username,
         email,
         password,
+        tech_skills,
+        contactNumber,
       }),
     });
 
@@ -97,6 +109,15 @@ const Register = () => {
               type="password"
               name="password"
               value={usercreds.password}
+              onChange={onchange}
+            />
+          </div>
+          <div className="register-input-box">
+            <label htmlFor="contactNumber">contactNumber </label>{" "}
+            <input
+              type="phone"
+              name="contactNumber"
+              value={usercreds.contactNumber}
               onChange={onchange}
             />
           </div>
