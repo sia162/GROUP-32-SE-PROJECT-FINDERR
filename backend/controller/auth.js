@@ -16,7 +16,7 @@ exports.signup = (req, res) => {
         error: "User already registered",
       });
       
-    const { firstName, lastName, email, password, tech_skills } = req.body;
+    const { firstName, lastName, email, password, tech_skills , contactNumber} = req.body;
     const hash_password = await bcrypt.hash(password, 10);
     const _user = new User({
       firstName,
@@ -24,6 +24,7 @@ exports.signup = (req, res) => {
       email,
       hash_password,
       tech_skills,
+      contactNumber,
       username: shortid.generate(),
     });
 
@@ -88,4 +89,7 @@ exports.searchUser = (req, res) => {
         console.log(err)
   })
 };
+
+
+
 

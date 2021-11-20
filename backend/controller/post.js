@@ -1,6 +1,22 @@
 
 const Post = require('../models/post');
 
+const checkForErrors = ({ title, body , tech_skills }) => {
+  let errors = {};
+  let isValid = false;
+  if (title === '') {
+      errors = { ...errors, title: 'This field is required' }
+  }
+  if (body === '') {
+      errors = { ...errors, body: 'This field is required' }
+  }
+  if (tech_skills === '') {
+    errors = { ...errors, tech_skills: 'This field is required' }
+  }
+  isValid = true;
+  return { isValid, errors };
+}
+
 exports.createpost = (req, res) => {
   const {title,body,tech_skills} = req.body 
     if(!title || !body || !tech_skills){
@@ -69,17 +85,26 @@ exports.deletePost = (req, res) => {
 
 
 exports.updatePost = (req, res) => {
-  Post.findById(req.params.id)
-  .then(post =>{
-    post.title=req.body.title;
-    post.body = req.body.body;
-    post.tech_skills = req.body.tech_skills;
+  const title = req.body.title || '';
+  const body = req.body.body || '';
+  const tech_skills = req.body.tech_skills || '';
 
-    post.save()
-    .then(()=>res.json('Post updated!!'))
-    .catch(err=>res.status(400).json('Error: '+err));
-  })
-  .catch(err=>res.status(400).json('Error: '+err));
+  const { isValid, errors } = checkForErrors({ title,body,tech_skills });
+
+  if (isValid) {
+      const updatedPost = {
+          title: req.body.title,
+          body: req.body.body,
+          tech_skills:req.body.tech_skills,
+      };
+
+      Post.findByIdAndUpdate(req.params.id, updatedPost, err => {
+          if (err) throw err;
+          else res.json({ success: 'Post is updated' });
+      });
+  } else {
+      res.json({ errors });
+  }
 };
 
 
