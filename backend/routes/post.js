@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.post('/createpost',requireLogin,createpost);
-router.get('/allPost',requireLogin,allPost);
+router.get('/allPost',allPost);
 router.get('/myPost',requireLogin,myPost);
 router.delete('/deletePost/:postId',requireLogin,deletePost);
 router.post('/updatePost/:postId',requireLogin,updatePost);
