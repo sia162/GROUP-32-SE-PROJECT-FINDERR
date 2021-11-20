@@ -42,7 +42,7 @@ exports.createpost = (req, res) => {
 
 exports.allPost = (req, res) => {
   Post.find()
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id firstName lastName createdAt")
     .sort("-createdAt")
     .then((posts) => {
       res.json(posts);
@@ -54,7 +54,7 @@ exports.allPost = (req, res) => {
 
 exports.myPost = (req, res) => {
   Post.find({ postedBy: req.user._id })
-    .populate("PostedBy", "_id name")
+    .populate("postedBy", "_id firstName lastName createdAt")
     .then((mypost) => {
       res.json({ mypost });
     })

@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Singlepost from "../home-posts/Singlepost";
 import "./sectiontwo.css";
 import Arrow from "../arrow/Arrow";
-import { Context } from "../../login context/Context";
 
 const Sectiontwo = () => {
-  const { user, token } = useContext(Context);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -16,6 +14,7 @@ const Sectiontwo = () => {
 
       const jsondata = await response.json();
       console.log(jsondata);
+      setPosts(jsondata);
     };
 
     fetchPosts();
@@ -29,9 +28,9 @@ const Sectiontwo = () => {
       </div>
       <div className="halfbg bg-dark"></div>
       <div className="posteg">
-        <Singlepost />
-        <Singlepost />
-        <Singlepost />
+        {posts.slice(0, 3).map((post) => {
+          return <Singlepost key={post._id} post={post} />;
+        })}
         <a href="#contact">
           <Arrow />
         </a>

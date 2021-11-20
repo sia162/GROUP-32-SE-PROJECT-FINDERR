@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../sectiontwo/sectiontwo.css";
 import "./singlepost.css";
 
-const Singlepost = () => {
+const Singlepost = ({ post }) => {
   return (
     <div className="card">
       <img
@@ -12,34 +12,36 @@ const Singlepost = () => {
         alt="..."
       />
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
+        <h5 className="card-title">{post.title}</h5>
 
         <div className="card-post-details">
           <div className="card-author-name">
             <Link className="link" to="/user/:id">
               {" "}
-              by John Morph{" "}
+              by {post.postedBy.firstName} {post.postedBy.lastName}
             </Link>
           </div>
 
           <div className="card-post-time-date">
-            <div className="card-post-date">23 Nov 2021</div>
-            <div className="card-post-time">11:05:55</div>
+            <div className="card-post-date">
+              {" "}
+              {new Date(post.postedBy.createdAt).toDateString().slice(4)}
+            </div>
+            <div className="card-post-time">
+              {" "}
+              {new Date(post.postedBy.createdAt).toLocaleTimeString()}
+            </div>
           </div>
 
           <div className="card-post-tech">
             <ul>
-              <li>Nodejs</li>
-              <li>React</li>
+              <li>{post.tech_skills}</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <p className="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
+      <p className="card-text">{post.body}</p>
       <Link
         to="/post/:id"
         className="btn btn-dark"
