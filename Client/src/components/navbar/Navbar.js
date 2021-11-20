@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../login context/Context";
 import "./navbar.css";
 
 const Navbar = () => {
+  const { dispatch, user } = useContext(Context);
+
+  const handlelogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,16 +35,27 @@ const Navbar = () => {
                   Post
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  LogIn
-                </Link>
-              </li>
+              {!user && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">
+                    Register
+                  </Link>
+                </li>
+              )}
+              {!user && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    LogIn
+                  </Link>
+                </li>
+              )}
+              {user && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/" onClick={handlelogout}>
+                    LogOut
+                  </Link>
+                </li>
+              )}
             </ul>
             <form className="d-flex">
               <input
@@ -52,10 +70,12 @@ const Navbar = () => {
               </button>
             </form>
 
-            <Link to="/profile" className="link profile">
-              <i className="fas fa-user-circle profile-setting"></i>
-              <span className="profile-head">Profile</span>
-            </Link>
+            {user && (
+              <Link to="/profile" className="link profile">
+                <i className="fas fa-user-circle profile-setting"></i>
+                <span className="profile-head">Profile</span>
+              </Link>
+            )}
           </div>
         </div>
       </nav>
