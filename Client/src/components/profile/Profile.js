@@ -9,11 +9,11 @@ const Profile = () => {
       <div className="profile-sidebar">
         <img src={profile} className="profile-img" alt="profile" />
         <div>
-          <i class="far fa-edit " style={{ margin: "0 1.5rem 2rem 0" }}>
+          <i className="far fa-edit " style={{ margin: "0 1.5rem 2rem 0" }}>
             {" "}
             Edit
           </i>
-          <i class="far fa-trash-alt" style={{ margin: "0 0 2rem 1.5rem" }}>
+          <i className="far fa-trash-alt" style={{ margin: "0 0 2rem 1.5rem" }}>
             {" "}
             Delete
           </i>

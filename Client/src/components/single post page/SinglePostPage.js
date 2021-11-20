@@ -30,14 +30,14 @@ const SinglePost = () => {
               <li>React</li>
             </ul>
             <i
-              class="far fa-edit "
+              className="far fa-edit "
               data-toggle="tooltip"
               data-placement="bottom"
               title="Edit"
               style={{ margin: "0.75rem" }}
             ></i>
             <i
-              class="far fa-trash-alt"
+              className="far fa-trash-alt"
               data-toggle="tooltip"
               data-placement="bottom"
               title="Delete"
