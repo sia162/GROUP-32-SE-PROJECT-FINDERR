@@ -1,110 +1,122 @@
+const Post = require("../models/post");
 
-const Post = require('../models/post');
-
-const checkForErrors = ({ title, body , tech_skills }) => {
+const checkForErrors = ({ title, body, tech_skills }) => {
   let errors = {};
   let isValid = false;
-  if (title === '') {
-      errors = { ...errors, title: 'This field is required' }
+  if (title === "") {
+    errors = { ...errors, title: "This field is required" };
   }
-  if (body === '') {
-      errors = { ...errors, body: 'This field is required' }
+  if (body === "") {
+    errors = { ...errors, body: "This field is required" };
   }
-  if (tech_skills === '') {
-    errors = { ...errors, tech_skills: 'This field is required' }
+  if (tech_skills === "") {
+    errors = { ...errors, tech_skills: "This field is required" };
   }
   isValid = true;
   return { isValid, errors };
-}
+};
 
 exports.createpost = (req, res) => {
-  const {title,body,tech_skills} = req.body 
-    if(!title || !body || !tech_skills){
-      return  res.status(422).json({error:"Plase add all the fields"})
-    }
-    req.user.hash_password = undefined
+  const { title, body, tech_skills } = req.body;
+  if (!title || !body || !tech_skills) {
+    return res.status(422).json({ error: "Plase add all the fields" });
+  }
+  req.user.hash_password = undefined;
 
-    const post = new Post({
-        title,
-        body,
-        tech_skills,
-        postedBy:req.user
-    })
+  const post = new Post({
+    title,
+    body,
+    tech_skills,
+    postedBy: req.user,
+  });
 
-    post.save().then(result=>{
-      res.json({post:result})
+  post
+    .save()
+    .then((result) => {
+      res.json({ post: result });
     })
-    .catch(err=>{
-      console.log(err)
-    })
-    
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.allPost = (req, res) => {
   Post.find()
-    .populate("postedBy","_id name")
-    .sort('-createdAt')
-    .then((posts)=>{
-        res.json({posts})
-    }).catch(err=>{
-        console.log(err)
+    .populate("postedBy", "_id name")
+    .sort("-createdAt")
+    .then((posts) => {
+      res.json(posts);
     })
-   
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.myPost = (req, res) => {
-  Post.find({postedBy:req.user._id})
-    .populate("PostedBy","_id name")
-    .then(mypost=>{
-        res.json({mypost})
+  Post.find({ postedBy: req.user._id })
+    .populate("PostedBy", "_id name")
+    .then((mypost) => {
+      res.json({ mypost });
     })
-    .catch(err=>{
-        console.log(err)
-    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
-
 
 exports.deletePost = (req, res) => {
-  Post.findOne({_id:req.params.postId})
-  .populate("postedBy","_id")
-  .exec((err,post)=>{
-      if(err || !post){
-          return res.status(422).json({error:err})
+  Post.findOne({ _id: req.params.postId })
+    .populate("postedBy", "_id")
+    .exec((err, post) => {
+      if (err || !post) {
+        return res.status(422).json({ error: err });
       }
-      if(post.postedBy._id.toString() === req.user._id.toString()){
-            post.remove()
-            .then(result=>{
-                res.json(result)
-            }).catch(err=>{
-                console.log(err)
-            })
+      if (post.postedBy._id.toString() === req.user._id.toString()) {
+        post
+          .remove()
+          .then((result) => {
+            res.json(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
-  })
+    });
 };
 
+exports.updatePost = async (req, res) => {
+  const { title, body, tech_skills } = req.body;
+  const { isValid, errors } = checkForErrors({ title, body, tech_skills });
 
-
-exports.updatePost = (req, res) => {
-  const title = req.body.title || '';
-  const body = req.body.body || '';
-  const tech_skills = req.body.tech_skills || '';
-
-  const { isValid, errors } = checkForErrors({ title,body,tech_skills });
+  const updatedPost = {};
 
   if (isValid) {
-      const updatedPost = {
-          title: req.body.title,
-          body: req.body.body,
-          tech_skills:req.body.tech_skills,
-      };
+    if (title) {
+      updatedPost.title = title;
+    }
+    if (body) {
+      updatedPost.body = body;
+    }
+    if (tech_skills) {
+      updatedPost.tech_skills = tech_skills;
+    }
 
-      Post.findByIdAndUpdate(req.params.id, updatedPost, err => {
-          if (err) throw err;
-          else res.json({ success: 'Post is updated' });
-      });
+    let post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).send("not found");
+    }
+
+    if (post.postedBy._id.toString() === req.user._id.toString()) {
+      post = await Post.findByIdAndUpdate(
+        req.params.id,
+        { $set: updatedPost },
+        { new: true }
+      );
+      // console.log(post);
+      res.status(200).json(post);
+    } else {
+      return res.status(401).send("not allowed");
+    }
   } else {
-      res.json({ errors });
+    res.json({ errors });
   }
 };
-
-
