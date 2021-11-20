@@ -29,6 +29,20 @@ const SinglePost = () => {
               <li>Nodejs</li>
               <li>React</li>
             </ul>
+            <i
+              class="far fa-edit "
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Edit"
+              style={{ margin: "0.75rem" }}
+            ></i>
+            <i
+              class="far fa-trash-alt"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Delete"
+              style={{ margin: "0.75rem" }}
+            ></i>
           </div>
         </div>
       </div>
