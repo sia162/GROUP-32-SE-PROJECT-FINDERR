@@ -72,3 +72,8 @@
   color: white;
   border-radius: 9px;
 }
+
+.far:hover {
+  cursor: pointer;
+  color: rgb(100, 100, 100);
+}
