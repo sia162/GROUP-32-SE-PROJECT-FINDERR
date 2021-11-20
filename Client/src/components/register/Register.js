@@ -49,8 +49,6 @@ const Register = () => {
       setErrormsg(json.error);
     } else {
       setError(false);
-      //save the auth token and redirect
-      localStorage.setItem("token", json.token);
       navigate("/login");
     }
   };

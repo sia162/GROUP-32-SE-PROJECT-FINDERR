@@ -15,8 +15,9 @@ exports.signup = (req, res) => {
       return res.status(400).json({
         error: "User already registered",
       });
-      
-    const { firstName, lastName, email, password, tech_skills , contactNumber} = req.body;
+
+    const { firstName, lastName, email, password, tech_skills, contactNumber } =
+      req.body;
     const hash_password = await bcrypt.hash(password, 10);
     const _user = new User({
       firstName,
@@ -76,13 +77,11 @@ exports.signin = (req, res) => {
   });
 };
 
-
-
-
 exports.searchUser = (req, res) => {
-  let userPattern = new RegExp("^"+req.body.query)
-    User.find({email:{$regex:userPattern}})
+  let userPattern = new RegExp("^" + req.body.query);
+  User.find({ email: { $regex: userPattern } })
     .select("_id email")
+<<<<<<< HEAD
     .then(user=>{
         res.json({user})
     }).catch(err=>{
@@ -99,3 +98,12 @@ exports.searchUser = (req, res) => {
 
 
 
+=======
+    .then((user) => {
+      res.json({ user });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+>>>>>>> a1d20790ecd8392b942a8d2954f8d575a819ebf5
