@@ -2,6 +2,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const shortid = require("shortid");
+const Post = require("../models/post");
 
 const generateJwtToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET, {
@@ -200,17 +201,23 @@ exports.updateUser = async (req, res) => {
 };
 
 
-exports.deleteUser = async(req, res) => {
+exports.deleteUser = async(req, res,next) => {
   let user = await User.findById(req.params.id);
     if (!user) {
       return res.status(404).send("not found");
     }
+    await Post.deleteMany({ postedBy: req.user._id }).then(function(){
+      res.status(200).send("Data deleted"); 
+      next();
+    }).catch(function(error){
+      res.json({error}); // Failure
+    })
 
     if (user._id.toString() === req.user._id.toString()) {
       user = await User.findById(req.params.id) ;
       user.remove();
       // console.log(post);
-      res.status(200).json(user);
+      res.status(200).send("User deleted");
     } else {
       return res.status(401).send("not allowed");
     }
