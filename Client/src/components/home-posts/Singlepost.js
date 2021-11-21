@@ -18,18 +18,23 @@ const Singlepost = ({ post }) => {
           <div className="card-author-name">
             <Link className="link" to="/user/:id">
               {" "}
-              by {post.postedBy.firstName} {post.postedBy.lastName}
+              by {post.postedBy ? post.postedBy.firstName : "Unknown"}{" "}
+              {post.postedBy ? post.postedBy.lastName : "User"}
             </Link>
           </div>
 
           <div className="card-post-time-date">
             <div className="card-post-date">
               {" "}
-              {new Date(post.postedBy.createdAt).toDateString().slice(4)}
+              {post.postedBy
+                ? new Date(post.postedBy.createdAt).toDateString().slice(4)
+                : "Unknown Date"}
             </div>
             <div className="card-post-time">
               {" "}
-              {new Date(post.postedBy.createdAt).toLocaleTimeString()}
+              {post.postedBy
+                ? new Date(post.postedBy.createdAt).toLocaleTimeString()
+                : "Unknown Time"}
             </div>
           </div>
 

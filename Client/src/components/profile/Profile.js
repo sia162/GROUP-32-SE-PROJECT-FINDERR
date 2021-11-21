@@ -1,27 +1,59 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Context } from "../../login context/Context";
-import Singlepost from "../home-posts/Singlepost";
+import React, { useContext, useState } from "react";
 import profile from "./profile.png";
 import "./profile.css";
+import Timeline from "../profile timeline posts/Timeline";
+import { Context } from "../../login context/Context";
 
 const Profile = () => {
-  const [myposts, setMyposts] = useState([]);
-  const { token, user } = useContext(Context);
+  const { user, token } = useContext(Context);
+  const [postdetails, setPostdetails] = useState({
+    title: "",
+    body: "",
+    tech_skills: "",
+  });
 
-  useEffect(() => {
-    const fetchMyposts = async () => {
-      const response = await fetch("http://localhost:2000/api/myPost", {
-        method: "GET",
-        headers: { authorization: token },
+  const [error, setError] = useState(false);
+
+  const onpostdetailschange = (e) => {
+    setError(false);
+    setPostdetails({ ...postdetails, [e.target.name]: e.target.value });
+  };
+
+  const handleaddpost = async (e) => {
+    e.preventDefault();
+    setError(false);
+    const newpost = {
+      title: postdetails.title,
+      body: postdetails.body,
+      tech_skills: postdetails.tech_skills,
+    };
+
+    try {
+      const response = await fetch("http://localhost:2000/api/createpost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+        body: JSON.stringify(newpost),
       });
 
       const jsondata = await response.json();
-      console.log(jsondata);
-      setMyposts(jsondata.mypost);
-    };
 
-    fetchMyposts();
-  }, []);
+      if (jsondata.error) {
+        setError(true);
+      } else {
+        console.log(jsondata);
+        setError(false);
+
+        window.location.replace("/post/" + jsondata.post._id);
+      }
+    } catch (error) {
+      setError(true);
+      console.log(error);
+    }
+  };
+
   return (
     <div className="profile-div">
       <div className="profile-sidebar">
@@ -53,45 +85,51 @@ const Profile = () => {
           <button className="btn btn-dark request-btn ">Request</button>
         </div>
 
+        {/* add post section */}
         <div className="add-post-section">
-          <form className="post-details-form">
+          <form className="post-details-form" onSubmit={handleaddpost}>
+            <h4 style={{ paddingLeft: "5px" }}>Add Posts To Your Timeline.</h4>
             <input
               type="text"
-              name="post-title"
+              name="title"
               placeholder="Enter post title."
+              input={postdetails.title}
+              onChange={onpostdetailschange}
+            />
+
+            <input
+              type="text"
+              name="tech_skills"
+              placeholder="Enter tech-stack for post."
+              input={postdetails.tech_skills}
+              onChange={onpostdetailschange}
             />
 
             <textarea
-              name="post-desc"
-              id="post-desc"
+              name="body"
+              id="body"
               cols="30"
               rows="10"
               placeholder="Enter what's in your mind."
+              input={postdetails.body}
+              onChange={onpostdetailschange}
             ></textarea>
-          </form>
+            <button className="add-post-btn btn btn-dark" type="submit">
+              Post
+            </button>
 
-          <form className="cat-form">
-            <input type="checkbox" id="cat1" name="cat-1" value="React" />
-            <label htmlFor="cat1">React</label>
-            <input type="checkbox" id="cat2" name="cat-2" value="Nodejs" />
-            <label htmlFor="cat2">Nodejs</label>
-          </form>
-
-          <button className="add-post-btn btn btn-dark">Post</button>
-        </div>
-
-        <div className="all-posts-of-user">
-          <h3>Timeline</h3>
-          <div className="posts-box">
-            {myposts.length ? (
-              myposts.map((post) => {
-                return <Singlepost key={post._id} post={post} />;
-              })
-            ) : (
-              <p>No posts to show.</p>
+            {error && (
+              <p
+                style={{ color: "#d64a4a", paddingTop: "12px", margin: "0px" }}
+              >
+                Fill all details!
+              </p>
             )}
-          </div>
+          </form>
         </div>
+
+        {/* users all post */}
+        <Timeline />
       </div>
     </div>
   );
