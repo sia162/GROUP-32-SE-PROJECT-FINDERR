@@ -73,7 +73,7 @@ const Navbar = () => {
             {user && (
               <Link to="/profile" className="link profile">
                 <i className="fas fa-user-circle profile-setting"></i>
-                <span className="profile-head">Profile</span>
+                <span className="profile-head">{user.fullName}</span>
               </Link>
             )}
           </div>

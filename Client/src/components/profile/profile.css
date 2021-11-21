@@ -1,9 +1,10 @@
 .profile-div {
   display: flex;
-  flex-wrap: wrap;
   background: rgba(217, 222, 228, 255);
   padding: 2rem 0rem;
   justify-content: center;
+  justify-content: space-around;
+  /* flex-wrap: wrap; */
 }
 
 .profile-img {
@@ -17,6 +18,11 @@
   justify-content: flex-start;
   height: 80vh;
   text-align: center;
+  flex: 1;
+}
+
+.profile-rightside {
+  flex: 3;
 }
 
 .tech-skills ul li {
@@ -27,6 +33,7 @@
   display: flex;
   justify-content: space-between;
   padding: 20px 2px;
+  margin-right: 75px;
 }
 
 .tech-skills ul {
@@ -40,12 +47,15 @@
   border-top: 3px solid black;
   padding-top: 26px;
   margin-top: 14px;
+  margin-right: 75px;
 }
 
 .posts-box {
   display: flex;
   column-gap: 20px;
   margin-top: 16px;
+  flex-wrap: wrap;
+  row-gap: 23px;
 }
 
 .user-name {
@@ -61,7 +71,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
+  margin: 0px 75px 0px 0px;
 }
 
 .post-details-form {
@@ -73,6 +84,7 @@
   margin: 10px 0px;
   border-top: solid 3px black;
   padding-top: 23px;
+  row-gap: 4px;
 }
 
 .post-details-form input {
