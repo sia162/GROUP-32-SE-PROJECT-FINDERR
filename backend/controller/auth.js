@@ -199,3 +199,21 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+
+exports.deleteUser = async(req, res) => {
+  let user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).send("not found");
+    }
+
+    if (user._id.toString() === req.user._id.toString()) {
+      user = await User.findById(req.params.id) ;
+      user.remove();
+      // console.log(post);
+      res.status(200).json(user);
+    } else {
+      return res.status(401).send("not allowed");
+    }
+
+};
+
