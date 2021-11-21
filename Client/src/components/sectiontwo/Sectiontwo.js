@@ -13,7 +13,7 @@ const Sectiontwo = () => {
       });
 
       const jsondata = await response.json();
-      console.log(jsondata);
+      // console.log(jsondata);
       setPosts(jsondata);
     };
 

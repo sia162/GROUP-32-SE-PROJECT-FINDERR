@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../sectiontwo/sectiontwo.css";
 import "./singlepost.css";
 
+//cards
 const Singlepost = ({ post }) => {
   return (
     <div className="card">
@@ -46,13 +47,12 @@ const Singlepost = ({ post }) => {
         </div>
       </div>
 
-      <p className="card-text">{post.body}</p>
       <Link
-        to="/post/:id"
+        to={`/${post._id}`}
         className="btn btn-dark"
         style={{ width: "285px", margin: "auto", marginBottom: "10px" }}
       >
-        Go somewhere
+        Read
       </Link>
     </div>
   );

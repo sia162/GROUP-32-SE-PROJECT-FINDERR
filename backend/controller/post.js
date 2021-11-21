@@ -120,3 +120,15 @@ exports.updatePost = async (req, res) => {
     res.json({ errors });
   }
 };
+
+//get post by id:
+exports.postbyid = (req, res) => {
+  Post.find({ _id: req.params.id })
+    .populate("postedBy", "_id firstName lastName createdAt")
+    .then((postbyid) => {
+      res.json(postbyid);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

@@ -54,7 +54,7 @@ const Register = () => {
     });
 
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
 
     if (json.error) {
       setError(true);

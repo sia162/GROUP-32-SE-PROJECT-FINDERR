@@ -12,7 +12,7 @@ const Post = () => {
       });
 
       const jsondata = await response.json();
-      console.log(jsondata);
+      // console.log(jsondata);
       setPosts(jsondata);
     };
 
@@ -21,7 +21,7 @@ const Post = () => {
 
   return (
     <div className="post">
-      {posts.map((post) => {
+      {posts.reverse().map((post) => {
         return <Singlepost key={post._id} post={post} />;
       })}
     </div>

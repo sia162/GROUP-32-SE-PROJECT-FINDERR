@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./singlepostpage.css";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router";
 
 const SinglePost = () => {
+  const location = useLocation();
+  const pathtopost = location.pathname.split("/")[1];
+  const [singlePostData, setSinglePostData] = useState({});
+
+  useEffect(() => {
+    const getPost = async () => {
+      try {
+        const response = await fetch(`http://localhost:2000/api/${pathtopost}`);
+        const jsondata = await response.json();
+        console.log(jsondata[0]);
+        setSinglePostData(jsondata[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getPost();
+  }, [pathtopost]);
+
   return (
     <div>
       <div className="top-post-bg">
@@ -14,20 +34,37 @@ const SinglePost = () => {
             <div className="author-name">
               <Link className="link" to="/user/:id">
                 {" "}
-                by John Morph{" "}
+                by{" "}
+                {singlePostData.postedBy
+                  ? singlePostData.postedBy.firstName
+                  : "Unknown"}{" "}
+                {singlePostData.postedBy
+                  ? singlePostData.postedBy.lastName
+                  : "Author"}{" "}
               </Link>
             </div>
           </div>
 
           <div className="post-time-date">
-            <div className="post-date">23 Nov 2021</div>
-            <div className="post-time">11:05:55</div>
+            <div className="post-date">
+              {singlePostData.postedBy
+                ? new Date(singlePostData.postedBy.createdAt)
+                    .toDateString()
+                    .slice(4)
+                : "Unknown Date"}
+            </div>
+            <div className="post-time">
+              {singlePostData.postedBy
+                ? new Date(
+                    singlePostData.postedBy.createdAt
+                  ).toLocaleTimeString()
+                : "Unknown Time"}
+            </div>
           </div>
 
           <div className="post-tech">
             <ul>
-              <li>Nodejs</li>
-              <li>React</li>
+              <li>{singlePostData.tech_skills}</li>
             </ul>
             <i
               className="far fa-edit "
@@ -48,25 +85,9 @@ const SinglePost = () => {
       </div>
 
       <div className="post-content">
-        <div className="post-title">This is heading</div>
+        <div className="post-title">{singlePostData.title}</div>
 
-        <div className="post-desc">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, quam
-          voluptates quibusdam quidem blanditiis obcaecati nulla eius eligendi?
-          Harum beatae, unde ea itaque voluptate aspernatur ut, delectus debitis
-          cumque, veniam inventore repellendus deleniti corporis. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Cumque, obcaecati. Error
-          commodi hic, optio fuga corporis architecto suscipit possimus cum
-          aliquid quod eum saepe iste totam nihil enim veniam officia officiis
-          doloribus laboriosam obcaecati dicta. Esse modi quia vitae aspernatur
-          obcaecati recusandae nemo ipsum, eius architecto velit, aut placeat.
-          Esse qui quibusdam, modi rerum eos aspernatur ea animi est voluptatum.
-          Provident facere dolorem laborum eaque nihil quod esse quaerat sunt
-          adipisci dolores porro a corrupti omnis amet alias, necessitatibus
-          totam voluptates sequi, consectetur quae error possimus aperiam?
-          Beatae illo perspiciatis iste magni, quasi aliquid consectetur alias
-          quibusdam, laboriosam, dolor magnam!
-        </div>
+        <div className="post-desc">{singlePostData.body}</div>
 
         <button className="single-post-btn">
           <Link className="link" to="/posts">

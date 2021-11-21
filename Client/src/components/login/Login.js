@@ -37,7 +37,7 @@ const Login = () => {
       });
 
       const jsondata = await response.json();
-      console.log(jsondata);
+      // console.log(jsondata);
 
       if (jsondata.message) {
         setErrormsg(jsondata.message);

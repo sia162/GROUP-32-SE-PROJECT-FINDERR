@@ -43,10 +43,10 @@ const Profile = () => {
       if (jsondata.error) {
         setError(true);
       } else {
-        console.log(jsondata);
+        // console.log(jsondata);
         setError(false);
 
-        window.location.replace("/post/" + jsondata.post._id);
+        window.location.replace("/" + jsondata.post._id);
       }
     } catch (error) {
       setError(true);
