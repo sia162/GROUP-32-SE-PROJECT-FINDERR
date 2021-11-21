@@ -64,7 +64,7 @@ exports.myPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-  Post.findOne({ _id: req.params.postId })
+  Post.findOne({ _id: req.params.id })
     .populate("postedBy", "_id")
     .exec((err, post) => {
       if (err || !post) {

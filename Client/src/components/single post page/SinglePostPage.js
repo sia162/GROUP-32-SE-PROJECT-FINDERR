@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./singlepostpage.css";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router";
+import { Navigate, useLocation, useNavigate } from "react-router";
+import { Context } from "../../login context/Context";
 
 const SinglePost = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, token } = useContext(Context);
   const pathtopost = location.pathname.split("/")[1];
   const [singlePostData, setSinglePostData] = useState({});
 
@@ -13,7 +16,7 @@ const SinglePost = () => {
       try {
         const response = await fetch(`http://localhost:2000/api/${pathtopost}`);
         const jsondata = await response.json();
-        console.log(jsondata[0]);
+        // console.log(jsondata[0]);
         setSinglePostData(jsondata[0]);
       } catch (error) {
         console.log(error);
@@ -23,7 +26,26 @@ const SinglePost = () => {
     getPost();
   }, [pathtopost]);
 
-  return (
+  // http://localhost:2000/api/updatePost/619a63c17ada830218b357e8
+
+  //handle delete
+  const handleDeletePost = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:2000/api/deletePost/${pathtopost}`,
+        {
+          method: "DELETE",
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+
+      navigate("/profile");
+    } catch (error) {}
+  };
+
+  http: return (
     <div>
       <div className="top-post-bg">
         <div className="post-details">
@@ -66,20 +88,26 @@ const SinglePost = () => {
             <ul>
               <li>{singlePostData.tech_skills}</li>
             </ul>
-            <i
-              className="far fa-edit "
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Edit"
-              style={{ margin: "0.75rem" }}
-            ></i>
-            <i
-              className="far fa-trash-alt"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Delete"
-              style={{ margin: "0.75rem" }}
-            ></i>
+
+            {singlePostData.postedBy?._id === user?._id && (
+              <>
+                <i
+                  className="far fa-edit "
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Edit"
+                  style={{ margin: "0.75rem" }}
+                ></i>
+                <i
+                  className="far fa-trash-alt"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Delete"
+                  style={{ margin: "0.75rem" }}
+                  onClick={handleDeletePost}
+                ></i>
+              </>
+            )}
           </div>
         </div>
       </div>
