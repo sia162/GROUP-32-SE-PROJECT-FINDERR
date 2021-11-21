@@ -12,6 +12,10 @@ const SinglePost = () => {
   const [singlePostData, setSinglePostData] = useState({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const getPost = async () => {
       try {
         const response = await fetch(`http://localhost:2000/api/${pathtopost}`);
