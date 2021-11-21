@@ -77,3 +77,28 @@
   cursor: pointer;
   color: rgb(100, 100, 100);
 }
+
+/* update post mode */
+.single-post-techskills-update {
+  border: none;
+  background: #9595958c;
+  width: 230px;
+  padding: 4px;
+}
+
+.single-post-title-update {
+  border: none;
+  background: #cac9c980;
+  width: 70vw;
+  padding: 4px;
+}
+
+.single-post-content-update {
+  border: none;
+  background: #cac9c980;
+  width: 70vw;
+  height: 38vh;
+  padding: 4px;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}

@@ -14,7 +14,7 @@ router.post("/createpost", requireLogin, createpost);
 router.get("/allPost", allPost);
 router.get("/myPost", requireLogin, myPost);
 router.delete("/deletePost/:id", requireLogin, deletePost);
-router.post("/updatePost/:id", requireLogin, updatePost);
+router.put("/updatePost/:id", requireLogin, updatePost);
 router.get("/:id", postbyid);
 
 // router.post('/profile', requireSignin, (req, res) => {
