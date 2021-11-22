@@ -5,7 +5,7 @@ import Timeline from "../profile timeline posts/Timeline";
 import { Context } from "../../login context/Context";
 
 const Profile = () => {
-  const { user, token } = useContext(Context);
+  const { user, token, dispatch } = useContext(Context);
   const [postdetails, setPostdetails] = useState({
     title: "",
     body: "",
@@ -54,6 +54,35 @@ const Profile = () => {
     }
   };
 
+  //delete user
+  const handledeleteuser = async () => {
+    let deleteacc = window.confirm(
+      "Are you sure you want to delete your account?"
+    );
+    console.log(deleteacc);
+
+    if (deleteacc) {
+      try {
+        const response = await fetch(
+          `http://localhost:2000/api/deleteUser/${user._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: token,
+            },
+          }
+        );
+
+        const jsondata = await response.json();
+        console.log(jsondata);
+        dispatch({ type: "LOGOUT" });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className="profile-div">
       <div className="profile-sidebar">
@@ -63,7 +92,11 @@ const Profile = () => {
             {" "}
             Edit
           </i>
-          <i className="far fa-trash-alt" style={{ margin: "0 0 2rem 1.5rem" }}>
+          <i
+            className="far fa-trash-alt"
+            style={{ margin: "0 0 2rem 1.5rem" }}
+            onClick={handledeleteuser}
+          >
             {" "}
             Delete
           </i>

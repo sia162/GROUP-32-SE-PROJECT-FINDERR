@@ -122,7 +122,15 @@ exports.searchUser = (req, res) => {
     });
 };
 
-const checkForErrors = ({ firstName, lastName, username , email , hash_password , tech_skills , contactNumber }) => {
+const checkForErrors = ({
+  firstName,
+  lastName,
+  username,
+  email,
+  hash_password,
+  tech_skills,
+  contactNumber,
+}) => {
   let errors = {};
   let isValid = false;
   if (firstName === "") {
@@ -151,8 +159,24 @@ const checkForErrors = ({ firstName, lastName, username , email , hash_password 
 };
 
 exports.updateUser = async (req, res) => {
-  const { firstName, lastName, username ,email ,hash_password ,tech_skills , contactNumber } = req.body;
-  const { isValid, errors } = checkForErrors({ firstName, lastName,username , email , hash_password, tech_skills ,contactNumber});
+  const {
+    firstName,
+    lastName,
+    username,
+    email,
+    hash_password,
+    tech_skills,
+    contactNumber,
+  } = req.body;
+  const { isValid, errors } = checkForErrors({
+    firstName,
+    lastName,
+    username,
+    email,
+    hash_password,
+    tech_skills,
+    contactNumber,
+  });
 
   const updatedUser = {};
 
@@ -200,27 +224,36 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-
-exports.deleteUser = async(req, res,next) => {
+exports.deleteUser = async (req, res, next) => {
   let user = await User.findById(req.params.id);
-    if (!user) {
-      return res.status(404).send("not found");
-    }
-    await Post.deleteMany({ postedBy: req.user._id }).then(function(){
-      res.status(200).send("Data deleted"); 
-      next();
-    }).catch(function(error){
-      res.json({error}); // Failure
-    })
 
-    if (user._id.toString() === req.user._id.toString()) {
-      user = await User.findById(req.params.id) ;
-      user.remove();
-      // console.log(post);
-      res.status(200).send("User deleted");
-    } else {
-      return res.status(401).send("not allowed");
+  if (!user) {
+    return res.status(404).send("not found");
+  } else {
+    try {
+      await Post.deleteMany({ postedBy: req.user._id });
+      await User.findByIdAndDelete(req.params.id);
+      res.status(200).json("User has been deleted");
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal Server Error!");
     }
+  }
 
+  // await Post.deleteMany({ postedBy: req.user._id })
+  //   .then(function () {
+  //     res.status(200).send("Data deleted");
+  //     next();
+  //   })
+  //   .catch(function (error) {
+  //     res.json({ error }); // Failure
+  //   });
+  // if (user._id.toString() === req.user._id.toString()) {
+  //   user = await User.findById(req.params.id);
+  //   user.remove();
+  //   // console.log(post);
+  //   res.status(200).send("User deleted");
+  // } else {
+  //   return res.status(401).send("not allowed");
+  // }
 };
-

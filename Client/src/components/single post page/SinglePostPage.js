@@ -45,26 +45,6 @@ const SinglePost = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-<<<<<<< HEAD
-
-  useEffect(() => {
-    const getPost = async () => {
-      try {
-        const response = await fetch(`http://localhost:2000/api/${pathtopost}`);
-        const jsondata = await response.json();
-        // console.log(jsondata[0]);
-        setSinglePostData(jsondata[0]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getPost();
-  }, [pathtopost]);
-
-  // http://localhost:2000/api/updatePost/619a63c17ada830218b357e8
-=======
->>>>>>> 4294b1304b9f26a9b6aab849d686e30015dc24a9
 
   //handle delete
   const handleDeletePost = async () => {
