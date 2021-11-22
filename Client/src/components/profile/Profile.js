@@ -57,13 +57,26 @@ const Profile = () => {
   return (
     <div className="profile-div">
       <div className="profile-sidebar">
-        <img src={profile} className="profile-img" alt="profile" />
+        <div className="avatar">
+          <img
+            // src={profile}
+            src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTI1fHx1c2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+            alt="profile"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </div>
         <div>
-          <i className="far fa-edit " style={{ margin: "0 1.5rem 2rem 0" }}>
+          <i
+            className="far fa-edit "
+            style={{ margin: "1.75rem 1.5rem 2rem 0" }}
+          >
             {" "}
             Edit
           </i>
-          <i className="far fa-trash-alt" style={{ margin: "0 0 2rem 1.5rem" }}>
+          <i
+            className="far fa-trash-alt"
+            style={{ margin: "1.75rem 0 2rem 1.5rem" }}
+          >
             {" "}
             Delete
           </i>

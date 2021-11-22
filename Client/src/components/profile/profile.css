@@ -1,14 +1,10 @@
 .profile-div {
   display: flex;
   background: rgba(217, 222, 228, 255);
-  padding: 2rem 0rem;
+  padding: 3.75rem 0rem;
   justify-content: center;
   justify-content: space-around;
   /* flex-wrap: wrap; */
-}
-
-.profile-img {
-  height: 236px;
 }
 
 .profile-sidebar {
@@ -161,4 +157,31 @@ input[type="checkbox"]:checked:disabled + label:before {
 .request-btn {
   width: 105px;
   height: 38px;
+}
+
+.avatar {
+  max-width: 150px;
+  max-height: 150px;
+  box-sizing: border-box;
+  border: 5px black solid;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+  transform: translatey(0px);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+    transform: translatey(-20px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
 }
