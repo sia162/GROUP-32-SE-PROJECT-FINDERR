@@ -17,7 +17,7 @@ const Singlepost = ({ post }) => {
 
         <div className="card-post-details">
           <div className="card-author-name">
-            <Link className="link" to="/user/:id">
+            <Link className="link" to={`/user/${post.postedBy._id}`}>
               {" "}
               by {post.postedBy ? post.postedBy.firstName : "Unknown"}{" "}
               {post.postedBy ? post.postedBy.lastName : "User"}

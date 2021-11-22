@@ -23,7 +23,7 @@ function App() {
           <Route path="/register" element={user ? <Home /> : <Register />} />
           <Route path="/:id" element={<SinglePost />} />
           <Route path="/posts" element={<Post />} />
-          <Route path="/profile" element={user ? <Profile /> : <Home />} />
+          <Route path="/user/:id" element={<Profile />} />
         </Routes>
         <Footer />
       </Router>

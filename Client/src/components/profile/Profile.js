@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import profile from "./profile.png";
+import React, { useContext, useEffect, useState } from "react";
 import "./profile.css";
 import Timeline from "../profile timeline posts/Timeline";
 import { Context } from "../../login context/Context";
+import { useLocation } from "react-router";
 
 const Profile = () => {
   const { user, token, dispatch } = useContext(Context);
@@ -11,14 +11,39 @@ const Profile = () => {
     body: "",
     tech_skills: "",
   });
-
   const [error, setError] = useState(false);
-
   const onpostdetailschange = (e) => {
     setError(false);
     setPostdetails({ ...postdetails, [e.target.name]: e.target.value });
   };
 
+  //user by id
+  const [userdetails, setUserdetails] = useState({});
+  const [useridposts, setUseridposts] = useState([]);
+  const location = useLocation();
+  const userid = location.pathname.split("/")[2];
+  useEffect(() => {
+    const getuserbyid = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:2000/api/user/${userid}`,
+          {
+            method: "GET",
+          }
+        );
+        const jsonuserdata = await response.json();
+        console.log(jsonuserdata);
+        setUserdetails(jsonuserdata.user);
+        setUseridposts(jsonuserdata.userposts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getuserbyid();
+  }, [userid]);
+
+  //handle adding post
   const handleaddpost = async (e) => {
     e.preventDefault();
     setError(false);
@@ -94,23 +119,27 @@ const Profile = () => {
             style={{ width: "100%", height: "auto" }}
           />
         </div>
-        <div>
-          <i
-            className="far fa-edit "
-            style={{ margin: "1.75rem 1.5rem 2rem 0" }}
-          >
-            {" "}
-            Edit
-          </i>
-          <i
-            className="far fa-trash-alt"
-            style={{ margin: "0 0 2rem 1.5rem" }}
-            onClick={handledeleteuser}
-          >
-            {" "}
-            Delete
-          </i>
-        </div>
+
+        {user._id === userdetails._id && (
+          <div>
+            <i
+              className="far fa-edit "
+              style={{ margin: "1.75rem 1.5rem 2rem 0" }}
+            >
+              {" "}
+              Edit
+            </i>
+            <i
+              className="far fa-trash-alt"
+              style={{ margin: "0 0 2rem 1.5rem" }}
+              onClick={handledeleteuser}
+            >
+              {" "}
+              Delete
+            </i>
+          </div>
+        )}
+
         <div className="tech-skills">
           <p>Technical Skills</p>
           <ul>
@@ -124,55 +153,65 @@ const Profile = () => {
 
       <div className="profile-rightside">
         <div className="userdetails">
-          <div className="user-name">{user.fullName}</div>
+          <div className="user-name">
+            {userdetails.firstName} {userdetails.lastName}
+          </div>
           <button className="btn btn-dark request-btn ">Request</button>
         </div>
 
         {/* add post section */}
-        <div className="add-post-section">
-          <form className="post-details-form" onSubmit={handleaddpost}>
-            <h4 style={{ paddingLeft: "5px" }}>Add Posts To Your Timeline.</h4>
-            <input
-              type="text"
-              name="title"
-              placeholder="Enter post title."
-              input={postdetails.title}
-              onChange={onpostdetailschange}
-            />
+        {user._id === userdetails._id && (
+          <div className="add-post-section">
+            <form className="post-details-form" onSubmit={handleaddpost}>
+              <h4 style={{ paddingLeft: "5px" }}>
+                Add Posts To Your Timeline.
+              </h4>
+              <input
+                type="text"
+                name="title"
+                placeholder="Enter post title."
+                input={postdetails.title}
+                onChange={onpostdetailschange}
+              />
 
-            <input
-              type="text"
-              name="tech_skills"
-              placeholder="Enter tech-stack for post."
-              input={postdetails.tech_skills}
-              onChange={onpostdetailschange}
-            />
+              <input
+                type="text"
+                name="tech_skills"
+                placeholder="Enter tech-stack for post."
+                input={postdetails.tech_skills}
+                onChange={onpostdetailschange}
+              />
 
-            <textarea
-              name="body"
-              id="body"
-              cols="30"
-              rows="10"
-              placeholder="Enter what's in your mind."
-              input={postdetails.body}
-              onChange={onpostdetailschange}
-            ></textarea>
-            <button className="add-post-btn btn btn-dark" type="submit">
-              Post
-            </button>
+              <textarea
+                name="body"
+                id="body"
+                cols="30"
+                rows="10"
+                placeholder="Enter what's in your mind."
+                input={postdetails.body}
+                onChange={onpostdetailschange}
+              ></textarea>
+              <button className="add-post-btn btn btn-dark" type="submit">
+                Post
+              </button>
 
-            {error && (
-              <p
-                style={{ color: "#d64a4a", paddingTop: "12px", margin: "0px" }}
-              >
-                Fill all details!
-              </p>
-            )}
-          </form>
-        </div>
+              {error && (
+                <p
+                  style={{
+                    color: "#d64a4a",
+                    paddingTop: "12px",
+                    margin: "0px",
+                  }}
+                >
+                  Fill all details!
+                </p>
+              )}
+            </form>
+          </div>
+        )}
 
         {/* users all post */}
-        <Timeline />
+        <Timeline posts={useridposts} />
       </div>
     </div>
   );

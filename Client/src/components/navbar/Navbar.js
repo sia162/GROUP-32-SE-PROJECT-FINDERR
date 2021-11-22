@@ -71,7 +71,7 @@ const Navbar = () => {
             </form>
 
             {user && (
-              <Link to="/profile" className="link profile">
+              <Link to={`/user/${user._id}`} className="link profile">
                 <i className="fas fa-user-circle profile-setting"></i>
                 <span className="profile-head">{user.fullName}</span>
               </Link>

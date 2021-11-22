@@ -1,31 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import Singlepost from "../home-posts/Singlepost";
-import { Context } from "../../login context/Context";
 
-const Timeline = () => {
-  const [myposts, setMyposts] = useState([]);
-  const { token } = useContext(Context);
-
-  useEffect(() => {
-    const fetchMyposts = async () => {
-      const response = await fetch("http://localhost:2000/api/myPost", {
-        method: "GET",
-        headers: { authorization: token },
-      });
-
-      const jsondata = await response.json();
-      // console.log(jsondata);
-      setMyposts(jsondata.mypost);
-    };
-
-    fetchMyposts();
-  }, [token]);
+const Timeline = ({ posts }) => {
   return (
     <div className="all-posts-of-user">
       <h3>Timeline</h3>
       <div className="posts-box">
-        {myposts.length ? (
-          myposts.map((post) => {
+        {posts.length ? (
+          posts.map((post) => {
             return <Singlepost key={post._id} post={post} />;
           })
         ) : (

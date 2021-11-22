@@ -257,3 +257,23 @@ exports.deleteUser = async (req, res, next) => {
   //   return res.status(401).send("not allowed");
   // }
 };
+
+//get user by id
+exports.getuserbyid = async (req, res) => {
+  const user = await User.findById(req.params.id).select("-hash_password");
+
+  try {
+    if (!user) {
+      res.status(404).send("user not found");
+    } else {
+      const userposts = await Post.find({ postedBy: req.params.id }).populate(
+        "postedBy",
+        "_id firstName lastName createdAt"
+      );
+      // console.log(userposts);
+      res.status(200).json({ user, userposts });
+    }
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
+};
