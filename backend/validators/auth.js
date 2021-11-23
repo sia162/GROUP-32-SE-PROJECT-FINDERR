@@ -7,13 +7,21 @@ exports.validateSignupRequest = [
     check('lastName')
     .notEmpty()
     .withMessage('lastName is required'),
-    check('lastName'),
+    check('username')
+    .notEmpty()
+    .withMessage('username is required'),
     check('email')
     .isEmail()
     .withMessage('Valid Email is required'),
     check('password')
     .isLength({ min: 6 })
-    .withMessage('Password must be at least 6 character long')
+    .withMessage('Password must be at least 6 character long'),
+    check('tech_skills')
+    .notEmpty()
+    .withMessage('tech_skills is required'),
+    check('contactNumber')
+    .notEmpty()
+    .withMessage('contactNumber is required'),
 ];
 
 exports.validateSigninRequest = [
