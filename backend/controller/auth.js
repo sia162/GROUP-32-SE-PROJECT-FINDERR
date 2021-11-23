@@ -268,7 +268,7 @@ exports.getuserbyid = async (req, res) => {
     } else {
       const userposts = await Post.find({ postedBy: req.params.id }).populate(
         "postedBy",
-        "_id firstName lastName createdAt"
+        "_id firstName lastName contactNumber email"
       );
       // console.log(userposts);
       res.status(200).json({ user, userposts });

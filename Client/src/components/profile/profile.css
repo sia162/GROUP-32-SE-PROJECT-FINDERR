@@ -58,6 +58,18 @@
   font-size: 2rem;
 }
 
+.private-user-info {
+  display: flex;
+  column-gap: 15px;
+  margin-top: 5px;
+}
+
+.hidden-user-details {
+  font-size: 1rem;
+  margin: 0;
+  color: grey;
+}
+
 .tech-skills {
   text-align: left;
   width: 220px;

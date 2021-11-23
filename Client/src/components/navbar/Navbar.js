@@ -5,6 +5,7 @@ import "./navbar.css";
 
 const Navbar = () => {
   const { dispatch, user } = useContext(Context);
+ 
 
   const handlelogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -57,18 +58,6 @@ const Navbar = () => {
                 </li>
               )}
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-
-              <button className="btn btn-dark btn-outline-light" type="submit">
-                Search
-              </button>
-            </form>
 
             {user && (
               <Link to={`/user/${user._id}`} className="link profile">
