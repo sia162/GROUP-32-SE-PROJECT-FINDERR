@@ -13,11 +13,13 @@
   font-weight: bold;
   /* border: 3px solid #f1f1f1; */
   position: absolute;
-  top: 35%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  width: 80%;
+  width: 83%;
   padding: 20px;
   text-align: center;
+  height: 73%;
+  padding: 3rem 4rem;
 }
