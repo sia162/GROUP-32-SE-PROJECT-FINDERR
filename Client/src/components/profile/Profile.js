@@ -2,9 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import "./profile.css";
 import Timeline from "../profile timeline posts/Timeline";
 import { Context } from "../../login context/Context";
-import { useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 const Profile = () => {
+  const navigate = useNavigate();
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
+
   const { user, token, dispatch } = useContext(Context);
   const [postdetails, setPostdetails] = useState({
     title: "",
@@ -32,7 +37,7 @@ const Profile = () => {
           }
         );
         const jsonuserdata = await response.json();
-        console.log(jsonuserdata);
+        // console.log(jsonuserdata);
         setUserdetails(jsonuserdata.user);
         setUseridposts(jsonuserdata.userposts);
       } catch (error) {
@@ -47,10 +52,11 @@ const Profile = () => {
   const handleaddpost = async (e) => {
     e.preventDefault();
     setError(false);
+
     const newpost = {
-      title: postdetails.title,
+      title: capitalizeFirstLetter(postdetails.title),
       body: postdetails.body,
-      tech_skills: postdetails.tech_skills,
+      tech_skills: capitalizeFirstLetter(postdetails.tech_skills),
     };
 
     try {
@@ -70,7 +76,6 @@ const Profile = () => {
       } else {
         // console.log(jsondata);
         setError(false);
-
         window.location.replace("/" + jsondata.post._id);
       }
     } catch (error) {
@@ -102,9 +107,24 @@ const Profile = () => {
         const jsondata = await response.json();
         console.log(jsondata);
         dispatch({ type: "LOGOUT" });
+        navigate("/");
       } catch (error) {
         console.log(error);
       }
+    }
+  };
+
+  // handle connect toggle
+  const [showdetails, setShowdetails] = useState(false);
+  const handleConnectDetails = () => {
+    if (user) {
+      if (showdetails === false) {
+        setShowdetails(true);
+      } else {
+        setShowdetails(false);
+      }
+    } else {
+      navigate("/register");
     }
   };
 
@@ -120,7 +140,7 @@ const Profile = () => {
           />
         </div>
 
-        {user._id === userdetails._id && (
+        {user?._id === userdetails._id && (
           <div>
             <i
               className="far fa-edit "
@@ -155,12 +175,27 @@ const Profile = () => {
         <div className="userdetails">
           <div className="user-name">
             {userdetails.firstName} {userdetails.lastName}
+            {showdetails && (
+              <div className="private-user-info">
+                <p className="hidden-user-details">{userdetails.email}</p>
+                <p className="hidden-user-details">
+                  {userdetails.contactNumber
+                    ? userdetails.contactNumber
+                    : "No Contact Number"}
+                </p>
+              </div>
+            )}
           </div>
-          <button className="btn btn-dark request-btn ">Request</button>
+          <button
+            className="btn btn-dark request-btn "
+            onClick={handleConnectDetails}
+          >
+            Connect
+          </button>
         </div>
 
         {/* add post section */}
-        {user._id === userdetails._id && (
+        {user?._id === userdetails._id && (
           <div className="add-post-section">
             <form className="post-details-form" onSubmit={handleaddpost}>
               <h4 style={{ paddingLeft: "5px" }}>

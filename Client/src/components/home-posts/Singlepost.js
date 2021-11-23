@@ -27,15 +27,11 @@ const Singlepost = ({ post }) => {
           <div className="card-post-time-date">
             <div className="card-post-date">
               {" "}
-              {post.postedBy
-                ? new Date(post.postedBy.createdAt).toDateString().slice(4)
-                : "Unknown Date"}
+              {new Date(post.createdAt).toDateString().slice(4)}
             </div>
             <div className="card-post-time">
               {" "}
-              {post.postedBy
-                ? new Date(post.postedBy.createdAt).toLocaleTimeString()
-                : "Unknown Time"}
+              {new Date(post.createdAt).toLocaleTimeString()}
             </div>
           </div>
 

@@ -26,8 +26,9 @@ const SinglePost = () => {
             `http://localhost:2000/api/${pathtopost}`
           );
           const jsondata = await response.json();
-          // console.log(jsondata[0]);
+          console.log(jsondata[0]);
           setSinglePostData(jsondata[0]);
+
           setBodyUpdate(jsondata[0].body);
           setTitleUpdate(jsondata[0].title);
           setTech_skillsUpdate(jsondata[0].tech_skills);
@@ -46,7 +47,7 @@ const SinglePost = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  //handle delete
+  //handle delete post
   const handleDeletePost = async () => {
     try {
       const response = await fetch(
@@ -61,7 +62,7 @@ const SinglePost = () => {
 
       const jsondeletedata = await response.json();
       console.log(jsondeletedata);
-      navigate("/profile");
+      navigate(`/user/${user._id}`);
     } catch (error) {}
   };
 
@@ -99,7 +100,12 @@ const SinglePost = () => {
               <i className="fas fa-user-circle"></i>
             </div>
             <div className="author-name">
-              <Link className="link" to="/user/:id">
+              <Link
+                className="link"
+                to={`/user/${
+                  singlePostData.postedBy && singlePostData.postedBy._id
+                }`}
+              >
                 {" "}
                 by{" "}
                 {singlePostData.postedBy
@@ -114,18 +120,10 @@ const SinglePost = () => {
 
           <div className="post-time-date">
             <div className="post-date">
-              {singlePostData.postedBy
-                ? new Date(singlePostData.postedBy.createdAt)
-                    .toDateString()
-                    .slice(4)
-                : "Unknown Date"}
+              {new Date(singlePostData.createdAt).toDateString().slice(4)}
             </div>
             <div className="post-time">
-              {singlePostData.postedBy
-                ? new Date(
-                    singlePostData.postedBy.createdAt
-                  ).toLocaleTimeString()
-                : "Unknown Time"}
+              {new Date(singlePostData.createdAt).toLocaleTimeString()}
             </div>
           </div>
 
