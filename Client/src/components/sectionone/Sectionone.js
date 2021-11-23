@@ -52,8 +52,8 @@ const Sectionone = () => {
             </p>
           </div>
           <div className="carousel-item " data-bs-interval="5000">
-            <h1 className="fst-italic">spotify</h1>
-            <p>For music and music and music</p>
+            <h1 className="fst-italic">Connect</h1>
+            <p>Connect with people, connect with skills</p>
             <p>
               Irure amet minim magna commodo. Irure ex aute occaecat consequat
               adipisicing ex sit adipisicing eu et velit. Aute ad exercitation
@@ -69,8 +69,8 @@ const Sectionone = () => {
             </p>
           </div>
           <div className="carousel-item " data-bs-interval="5000">
-            <h1 className="fst-italic">music</h1>
-            <p>for you and your everything</p>
+            <h1 className="fst-italic">Share</h1>
+            <p>Vision to technical world</p>
             <p>
               Nostrud dolore commodo consequat aliqua ex exercitation quis
               tempor. Deserunt adipisicing adipisicing esse consequat proident

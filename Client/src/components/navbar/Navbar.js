@@ -37,7 +37,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/alluser">
-                  Alluser
+                  Users
                 </Link>
               </li>
               {!user && (

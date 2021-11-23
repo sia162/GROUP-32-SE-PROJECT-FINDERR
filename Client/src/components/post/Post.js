@@ -34,7 +34,15 @@ const Post = () => {
           }}
         />
       </form>
-
+      <div
+        style={{
+          padding: "1rem 2rem",
+          height: "15vh",
+        }}
+      >
+        <h1>Posts </h1>
+        <h6>Vision to technical world</h6>
+      </div>
       <div className="post">
         {posts
           .filter((post) => {

@@ -22,7 +22,8 @@
 }
 
 .tech-skills ul li {
-  list-style: none;
+  list-style: upper-roman;
+  margin: 0 1rem;
 }
 
 .userdetails {

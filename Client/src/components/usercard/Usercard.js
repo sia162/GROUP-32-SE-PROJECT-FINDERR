@@ -1,7 +1,8 @@
 import React from "react";
 import "./usercard.css";
+import { Link } from "react-router-dom";
 
-const Searchuser = ({ user }) => {
+const Searchuser = ({ userr }) => {
   return (
     <div>
       <div className="usercard">
@@ -14,25 +15,27 @@ const Searchuser = ({ user }) => {
         </div>
         <div>
           <h5>
-            {user.firstName} {user.lastName}{" "}
+            {userr.firstName} {userr.lastName}{" "}
           </h5>
           Tech-skills:
-          {user.tech_skills.length ? (
+          {userr.tech_skills.length ? (
             <ol className="userskill">
-              {user.tech_skills.map((u, index) => {
+              {userr.tech_skills.map((u, index) => {
                 return <li key={index}>{u}</li>;
               })}
             </ol>
           ) : (
             <p>
               {" "}
-              <b> &emsp;This person Knows nothing, thank you!</b>
+              <b> &emsp;This person knows nothing, thank you!</b>
             </p>
           )}
         </div>
-        <button type="button" className="btn btn-dark userbtn">
-          View
-        </button>
+        <Link className="userbtn" to={`/user/${userr._id}`}>
+          <button type="button" className="btn btn-dark">
+            View
+          </button>
+        </Link>
       </div>
     </div>
   );
