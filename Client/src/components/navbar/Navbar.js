@@ -35,6 +35,11 @@ const Navbar = () => {
                   Post
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/alluser">
+                  Alluser
+                </Link>
+              </li>
               {!user && (
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">
