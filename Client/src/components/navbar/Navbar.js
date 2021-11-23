@@ -5,7 +5,6 @@ import "./navbar.css";
 
 const Navbar = () => {
   const { dispatch, user } = useContext(Context);
- 
 
   const handlelogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -62,7 +61,9 @@ const Navbar = () => {
             {user && (
               <Link to={`/user/${user._id}`} className="link profile">
                 <i className="fas fa-user-circle profile-setting"></i>
-                <span className="profile-head">{user.fullName}</span>
+                <span className="profile-head">
+                  {user.firstName} {user.lastName}
+                </span>
               </Link>
             )}
           </div>

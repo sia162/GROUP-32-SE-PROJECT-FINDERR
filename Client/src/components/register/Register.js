@@ -104,20 +104,20 @@ const Register = () => {
             />
           </div>
           <div className="register-input-box">
-            <label htmlFor="password">password </label>{" "}
-            <input
-              type="password"
-              name="password"
-              value={usercreds.password}
-              onChange={onchange}
-            />
-          </div>
-          <div className="register-input-box">
             <label htmlFor="contactNumber">contact number </label>{" "}
             <input
               type="phone"
               name="contactNumber"
               value={usercreds.contactNumber}
+              onChange={onchange}
+            />
+          </div>
+          <div className="register-input-box">
+            <label htmlFor="password">password </label>{" "}
+            <input
+              type="password"
+              name="password"
+              value={usercreds.password}
               onChange={onchange}
             />
           </div>
