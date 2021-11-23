@@ -110,6 +110,18 @@ exports.signin = (req, res) => {
   });
 };
 
+exports.allUser = (req, res) => {
+  User.find()
+    .sort("-createdAt")
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
 exports.searchUser = (req, res) => {
   let userPattern = new RegExp("^" + req.body.query);
   User.find({ email: { $regex: userPattern } })

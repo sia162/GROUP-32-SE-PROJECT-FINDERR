@@ -3,6 +3,7 @@ const {
   signup,
   signin,
   searchUser,
+  allUser,
   updateUser,
   deleteUser,
   getuserbyid,
@@ -18,6 +19,7 @@ const router = express.Router();
 router.post("/signup", validateSignupRequest, isRequestValidated, signup);
 router.post("/signin", validateSigninRequest, isRequestValidated, signin);
 router.post("/search", searchUser);
+router.get("/allUser", allUser);
 router.post("/updateUser/:id", requireLogin, updateUser);
 router.delete("/deleteUser/:id", requireLogin, deleteUser);
 router.get("/user/:id", getuserbyid);
