@@ -121,7 +121,6 @@ exports.allUser = (req, res) => {
     });
 };
 
-
 exports.searchUser = (req, res) => {
   let userPattern = new RegExp("^" + req.body.query);
   User.find({ email: { $regex: userPattern } })
@@ -180,6 +179,7 @@ exports.updateUser = async (req, res) => {
     tech_skills,
     contactNumber,
   } = req.body;
+
   const { isValid, errors } = checkForErrors({
     firstName,
     lastName,
@@ -191,6 +191,8 @@ exports.updateUser = async (req, res) => {
   });
 
   const updatedUser = {};
+
+  const newpassword = await bcrypt.hash(hash_password, 10);
 
   if (isValid) {
     if (firstName) {
@@ -206,7 +208,7 @@ exports.updateUser = async (req, res) => {
       updatedUser.email = email;
     }
     if (hash_password) {
-      updatedUser.hash_password = hash_password;
+      updatedUser.hash_password = newpassword;
     }
     if (tech_skills) {
       updatedUser.tech_skills = tech_skills;
@@ -280,7 +282,7 @@ exports.getuserbyid = async (req, res) => {
     } else {
       const userposts = await Post.find({ postedBy: req.params.id }).populate(
         "postedBy",
-        "_id firstName lastName createdAt"
+        "_id firstName lastName contactNumber email"
       );
       // console.log(userposts);
       res.status(200).json({ user, userposts });

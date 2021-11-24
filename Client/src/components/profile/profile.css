@@ -22,7 +22,8 @@
 }
 
 .tech-skills ul li {
-  list-style: none;
+  list-style: upper-roman;
+  margin: 0 1rem;
 }
 
 .userdetails {
@@ -56,6 +57,18 @@
 
 .user-name {
   font-size: 2rem;
+}
+
+.private-user-info {
+  display: flex;
+  column-gap: 15px;
+  margin-top: 5px;
+}
+
+.hidden-user-details {
+  font-size: 1rem;
+  margin: 0;
+  color: grey;
 }
 
 .tech-skills {
@@ -184,4 +197,36 @@ input[type="checkbox"]:checked:disabled + label:before {
     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
     transform: translatey(0px);
   }
+}
+
+/* update info */
+
+.update-user-details form {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.update-info {
+  display: flex;
+  row-gap: 5px;
+  flex-direction: column;
+  width: 67vw;
+}
+
+.update-user-details input {
+  padding: 4px 10px;
+  border: none;
+  background: #c8c8c8cc;
+}
+
+.form-inline {
+  display: flex;
+  column-gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 4px 0px;
 }

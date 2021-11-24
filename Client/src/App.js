@@ -9,6 +9,7 @@ import SinglePost from "./components/single post page/SinglePostPage";
 import Post from "./components/post/Post";
 import Profile from "./components/profile/Profile";
 import { Context } from "./login context/Context";
+import Alluser from "./components/alluser/Alluser";
 
 function App() {
   const { user } = useContext(Context);
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register" element={user ? <Home /> : <Register />} />
           <Route path="/:id" element={<SinglePost />} />
           <Route path="/posts" element={<Post />} />
+          <Route path="/alluser" element={<Alluser />} />
           <Route path="/user/:id" element={<Profile />} />
         </Routes>
         <Footer />

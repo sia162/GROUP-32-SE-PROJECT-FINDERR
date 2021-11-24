@@ -35,6 +35,11 @@ const Navbar = () => {
                   Post
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/alluser">
+                  Users
+                </Link>
+              </li>
               {!user && (
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">
@@ -57,23 +62,13 @@ const Navbar = () => {
                 </li>
               )}
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-
-              <button className="btn btn-dark btn-outline-light" type="submit">
-                Search
-              </button>
-            </form>
 
             {user && (
               <Link to={`/user/${user._id}`} className="link profile">
                 <i className="fas fa-user-circle profile-setting"></i>
-                <span className="profile-head">{user.fullName}</span>
+                <span className="profile-head">
+                  {user.firstName} {user.lastName}
+                </span>
               </Link>
             )}
           </div>

@@ -1,7 +1,12 @@
+.post-page {
+  background: rgba(217, 222, 228, 255);
+  min-height: 87vh;
+}
+
 .post {
   display: flex;
   flex-wrap: wrap;
-  background: rgba(217, 222, 228, 255);
   padding: 2rem;
   gap: 2rem;
+  justify-content: center;
 }
